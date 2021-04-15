@@ -1,0 +1,18 @@
+<footer class="container flex-shrink-0">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <p>{{ with site.Copyright }}
+            {{ . }}
+            {{ else }}
+            &copy; {{ now.Year }} {{ site.Title }}. All rights are reserved.
+            {{ end }}</p>
+        </div>
+        <div class="col-12 col-md-6 text-center text-md-end">
+            <div class="d-inline-flex py-2 py-md-0 flex-wrap justify-content-center flex-row fw-bolder">
+                {{ range $k, $v := site.Social }}
+                <a href="{{$v}}" aria-label="{{title $k}}" {{cond (ne $k "email") "target=_blank" ""|safeHTMLAttr}}>{{upper $k}}</a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</footer>

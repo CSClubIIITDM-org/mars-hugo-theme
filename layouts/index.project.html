@@ -1,0 +1,55 @@
+{{ define "main" }}
+{{ with site.Data.project }}
+{{ $project := .title }}
+
+<div class="project container">
+    <div class="hero gradient row align-items-center align-items-md-end">
+        {{ $title := .title }}
+        {{ with resources.GetMatch (print "images/project/" .hero) }}
+        {{ with .Resize "1920x" }}
+        <img src="{{.RelPermalink}}" alt="{{$title}}" height="{{.Height}}" width="{{.Width}}">
+        {{ end }}
+        {{ end }}
+
+        <div class="col-10 col-md-8 col-lg-4 mx-auto mx-md-0">
+            <h1 class="title display-3">{{ .title }}</h1>
+            <blockquote class="blockquote">
+                <p>{{ markdownify .description }}</p>
+            </blockquote>
+        </div>
+        <div class="arrow"></div>
+    </div>
+
+    {{ range $i, $v := (slice . | append .parts) }}
+    {{ $fadeClass := cond (modBool $i 2) "fade-left" "fade-right" }}
+    <section class="row {{anchorize .title}} align-items-center" data-aos="{{$fadeClass}}">
+        <div class="col-md-7">
+            <p class="h5">{{ upper $project }}</p>
+                <h1 class="fw-bold">{{ upper (cond (eq $project .title) "overview" .title) }}</h1>
+                {{ if ne $project .title }}
+                {{ with .description }}<p>{{ markdownify . }}</p>{{ end }}
+                {{ end }}
+                {{ with .attributes }}
+                {{ partial "attributes" . }}
+                {{ end }}
+        </div>
+        <div class="part col-md-5 align-items-end">
+            {{ $title := .title }}
+            {{ with resources.GetMatch (print "images/project/" .image) }}
+            {{ with .Resize "500x" }}
+            <img class="img-fluid d-block mx-auto" src="{{.RelPermalink}}" alt="{{$title}}" height="{{.Height}}" width="{{.Width}}">
+            {{ end }}
+            {{ end }}
+        </div>
+    </section>
+    {{ end }}
+    {{ with .video }}
+    <section data-aos="fade-up">
+        <div class="ratio ratio-16x9">
+            <iframe title="{{$title}}" class="embed-responsive-item" src="{{.}}" allowfullscreen></iframe>
+        </div>
+    </section>
+    {{ end }}
+</div>
+{{ end }}
+{{ end }}

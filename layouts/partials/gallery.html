@@ -1,0 +1,24 @@
+{{ with site.Data.gallery }}
+<div class="container">
+    {{ with .section }}
+    <h1 class="d-block d-md-none">{{ .title }}</h1>
+    {{ with .description }}
+    <p>{{ . }}</p>
+    {{ end }}
+    {{ end }}
+
+    <div class="images d-flex flex-row align-items-center gap-5">
+        {{ range .images }}
+        {{ $caption := .caption }}
+        {{ with resources.Get (print "images/gallery/" .path) }}
+        <a href="{{.RelPermalink}}" aria-label="Open image in new tab" target="_blank" class="d-block image col">
+            {{ with .Resize "400x" }}
+            <img src="{{.RelPermalink}}" alt="{{$caption}}" height="{{.Height}}" width="{{.Width}}">
+            {{ end }}
+            <p class="h4 caption">{{ $caption }}</p>
+        </a>
+        {{ end }}
+        {{ end }}
+    </div>
+</div>
+{{ end }}

@@ -1,0 +1,149 @@
+$milestoneScale: 1.24;
+
+$arrowColor: #6c737d;
+$arrowheadHeight: 2.1rem / $milestoneScale;
+$arrowheadWidth: $arrowheadHeight / 2;
+
+$hexagonSide: 0.5rem;
+$hexagonWidth: $hexagonSide * 1.732;
+
+#roadmap .container {
+    @include media-breakpoint-up(md) {
+        width: 70%;
+    }
+
+    @include media-breakpoint-down(sm) {
+        hyphens: auto;
+    }
+
+    .description {
+        @include margin(1rem);
+        margin: 1rem;
+
+        @include media-breakpoint-down(md) {
+            background-color: $dark;
+        }
+    }
+    .row {
+        position: relative;
+        @include padding(1rem 0);
+
+        $gutter: 2 * $hexagonWidth;
+        & > div {
+            padding: 0 $gutter / 2;
+        }
+        $hexagonOffset: $arrowheadWidth + $gutter / 2 + $hexagonWidth / 2;
+        @include media-breakpoint-up(md) {
+            &:nth-child(2n) {
+                .description {
+                    margin-left: $arrowheadWidth;
+                    text-align: left;
+                }
+                .milestone {
+                    margin-left: $arrowheadWidth;
+                    .hexagon {
+                        left: -$hexagonOffset;
+                    }
+                }
+                .title::after {
+                    left: -$arrowheadWidth;
+                    border-right: $arrowheadWidth solid $arrowColor;
+                }
+            }
+            &:nth-child(2n + 1) {
+                .spacer {
+                    order: 6;
+                }
+                .description {
+                    margin-right: $arrowheadWidth;
+                    text-align: right;
+                }
+                .milestone {
+                    margin-right: $arrowheadWidth;
+                    justify-content: flex-end;
+                    .hexagon {
+                        right: -$hexagonOffset;
+                    }
+                }
+                .title::after {
+                    right: -$arrowheadWidth;
+                    border-left: $arrowheadWidth solid $arrowColor;
+                }
+                .title {
+                    order: 6;
+                }
+            }
+        }
+    }
+}
+.milestone {
+    $font-size: 1rem;
+    $padding: 0.3em;
+    @include font-size($font-size);
+    position: relative;
+
+    .title {
+        font-size: $milestoneScale * $font-size;
+        padding: $milestoneScale * $padding;
+        position: relative;
+        background: #3c3c3c;
+        border-radius: 0.2em;
+        color: $light;
+
+        &::after {
+            content: "";
+            height: 0;
+            width: 0;
+
+            position: absolute;
+            top: 50%;
+            margin-top: -$arrowheadHeight / 2;
+            border-top: $arrowheadWidth solid transparent;
+            border-bottom: $arrowheadWidth solid transparent;
+
+            @include media-breakpoint-down(md) {
+                top: calc(-#{$milestoneScale * $padding} + 1px);
+                left: 50%;
+                border-right: $arrowheadWidth solid $arrowColor;
+                transform: translateX(-50%) rotateZ(90deg);
+            }
+        }
+    }
+    .date {
+        @include font-size($font-size);
+        position: relative;
+        background: $arrowColor;
+        padding: $padding;
+    }
+}
+.hexagon {
+    $width: $hexagonWidth;
+    $color: $arrowColor;
+
+    width: $width;
+    height: $hexagonSide;
+
+    position: absolute;
+    background: $color;
+
+    &::before,
+    &::after {
+        position: absolute;
+        left: 0;
+
+        content: "";
+        width: 0;
+        height: 0;
+
+        border-left: $width / 2 solid transparent;
+        border-right: $width / 2 solid transparent;
+    }
+    &::before {
+        border-bottom: $hexagonSide / 2 solid $color;
+        top: -$hexagonSide / 2;
+    }
+    &::after {
+        border-top: $hexagonSide / 2 solid $color;
+        bottom: -$hexagonSide / 2;
+    }
+}

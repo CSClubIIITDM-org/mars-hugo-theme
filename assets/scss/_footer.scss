@@ -1,0 +1,7 @@
+footer {
+    @include padding(1.5rem);
+    a {
+        @include margin(0 $spacer);
+        @include font-size(0.8em);
+    }
+}

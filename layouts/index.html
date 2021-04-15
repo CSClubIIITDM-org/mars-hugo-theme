@@ -1,0 +1,34 @@
+{{ define "main" }}
+<div class="container justify-content-evenly">
+    <section class="hero row align-items-center justify-content-center">
+        <div class="col-10 col-md-6 col-lg-5 mx-auto mx-md-0 align-self-end order-last order-md-first">
+            {{ with site.Params.heroHeader }}
+            <h1>{{ .subheader }}</h1>
+            <h1 class="display-4">{{ .title }}</h1>
+            <figure class="pt-3">
+                <blockquote class="blockquote">
+                    <p>"{{ .motto }}"</p>
+                </blockquote>
+                <figcaption class="blockquote-footer text-end">
+                    <cite title="Source Title">{{ site.Title }}</cite>
+                </figcaption>
+            </figure>
+            {{ end }}
+        </div>
+        <div class="col-10 col-md-6 col-lg-7 align-self-start">
+            <div class="mars mx-auto"></div>
+        </div>
+        <div class="row arrow"></div>
+    </section>
+
+    {{ range $i, $v := where site.Menus.sections ".Params.hide" "!=" true }}
+    <section id="{{.Identifier|default (anchorize .Name)}}" data-aos="fade-up">
+        <header class="d-none d-md-block">
+            <h1 class="count">{{ printf "%02d" (add $i 1) }}</h1>
+            <h6 class="title">{{ upper .Name }}</h6>
+        </header>
+        {{ partial (anchorize .Name) . }}
+    </section>
+    {{ end }}
+</div>
+{{ end }}

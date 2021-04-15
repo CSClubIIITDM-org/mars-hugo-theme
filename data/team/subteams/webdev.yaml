@@ -1,0 +1,37 @@
+title: Web Development
+
+members:
+  - name: Utkarsh Verma
+    avatar: utkarsh.png
+    leader: true
+    subteam: Full Stack Developer
+    social:
+      website: utkarshverma.github.io
+      email: utkarshverma@bitbanged.com
+      linkedin: UtkarshVermaI
+      github: UtkarshVerma
+
+  - name: Anurag Kar
+    avatar: anurag.png
+    subteam: Full Stack Developer
+    social:
+      website: anuragkar234.github.io
+      email: anuragkar16@gmail.com
+      linkedin: anurag-kar-472587192
+      github: anuragkar234
+
+  - name: Amith
+    avatar: amith.png
+    subteam: Front-end Developer
+    social:
+      email: ced19i030@iiitdm.ac.in
+      linkedin: amith-prasanth-k-a02a03191
+      github: amith2368
+
+  - name: Ajay
+    avatar: ajay.png
+    subteam: Designer
+    social:
+      email: ajayrajendran480@gmail.com
+      linkedin: ajay-r-84274217a
+      behance: ajayr4

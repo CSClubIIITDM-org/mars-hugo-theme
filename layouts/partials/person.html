@@ -1,0 +1,37 @@
+{{ $person := .person | default . }}
+{{ $flag := .flag | default false }}
+
+{{ with $person }}
+<div class="person row align-items-center justify-content-center text-center py-4">
+    <div class="row align-items-center justify-content-center">
+        {{ $name := .name }}
+        {{ with resources.GetMatch (print "images/people/" .avatar) }}
+        {{ with .Fill "340x340 smart" }}
+        <img class="img-fluid" src="{{.RelPermalink}}" alt="{{$name}}" height="{{.Height}}" width="{{.Width}}">
+        {{ end }}
+        {{ end }}
+
+        <p class="h4">{{ .name }}</p>
+        {{ if $flag }}
+        <p class="h6">{{ .role }}</p>
+        {{ else }}
+        {{ if .leader }}
+        <p class="h5">Team Lead</p>
+        {{ end }}
+        <p class="h6">{{ .subteam }}</p>
+        {{ end }}
+
+        <div class="social d-flex flex-row justify-content-center gap-3">
+            {{ range $k, $v := .social }}
+            {{ $link := $v }}
+            {{ with index site.Params.socialLinks $k }}
+            {{ $link = printf . $v }}
+            {{ end }}
+            <a href="{{$link}}" aria-label="{{title $k}}" target="_blank">
+                {{ partial "svg" (index site.Params.socialIcons $k) }}
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}

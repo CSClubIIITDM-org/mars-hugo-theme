@@ -1,0 +1,16 @@
+<table class="table">
+    <tbody>
+        {{ range $k, $v := . }}
+            <tr>
+                <td class="text-start">{{ upper $k }}</td>
+                {{ $vals := split $v "/" }}
+                <td class="text-end">
+                    <span>{{ index $vals 0 }}</span>
+                    {{ if gt (len $vals) 1 }}
+                        <span class="text-muted"> / {{ trim (index $vals 1) " " }}</span>
+                    {{ end }}
+                </td>
+            </tr>
+        {{ end }}
+    </tbody>
+</table>

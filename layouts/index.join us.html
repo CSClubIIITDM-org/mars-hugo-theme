@@ -1,0 +1,48 @@
+{{ define "main" }}
+{{ with site.Data.join_us }}
+<div class="join-us container">
+    <section class="hero gradient row align-items-center">
+        {{ with resources.Get (print "images/join-us/" .hero) }}
+        <img src="{{.RelPermalink}}" alt="Join Us" height="{{.Height}}" width="{{.Width}}">
+        {{ end }}
+        <div class="text-center">
+            <h1 class="display-3">{{ .title }}</h1>
+            <p class="py-3">{{ markdownify .description }}</p>
+            {{ with .button }}
+            {{ with .link }}
+            <a href="{{.}}" class="button">{{ upper .title }}</a>
+            {{ else }}
+            <a class="button disabled">{{ upper .title }}</a>
+            {{ end }}
+            {{ end }}
+        </div>
+        <div class="arrow"></div>
+    </section>
+
+    {{ with .quotation }}
+    <section data-aos="fade-up">
+        <div class="row">
+            <figure class="text-center">
+                <blockquote class="blockquote">
+                    <p>"{{ .quote }}"</p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    <cite title="Source Title">{{ .by }}</cite>
+                </figcaption>
+            </figure>
+        </div>
+    </section>
+    {{ end }}
+
+
+    {{ range .sections }}
+    <section data-aos="fade-up">
+        <div class="row">
+            <h1>{{ .title }}</h1>
+            <p>{{ markdownify .description }}</p>
+        </div>
+    </section>
+    {{ end }}
+</div>
+{{ end }}
+{{ end }}

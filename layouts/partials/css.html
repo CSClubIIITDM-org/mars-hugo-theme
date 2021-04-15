@@ -1,0 +1,19 @@
+{{ $aos := resources.Get "aos.css" }}
+
+{{ with resources.Get "scss/site.scss" }}
+{{ $scss := . | resources.ExecuteAsTemplate "site.scss" . }}
+{{ if hugo.IsProduction }}
+{{ with $scss | toCSS (dict "outputStyle" "compressed") }}
+{{ with slice $aos . | resources.Concat "css/site.css" | postCSS | minify | fingerprint | resources.PostProcess }}
+<link rel="stylesheet" href="{{.RelPermalink}}" integrity="{{.Data.Integrity}}" crossorigin="anonymous">
+{{ end }}
+{{ end }}
+{{ else }}
+{{ with slice $aos ($scss | toCSS | postCSS) | resources.Concat "css/site.css" }}
+<link rel="stylesheet" href="{{.RelPermalink}}">
+{{ end }}
+{{ end }}
+{{ end }}
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">

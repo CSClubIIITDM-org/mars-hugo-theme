@@ -1,0 +1,315 @@
+// Bootstrap BEGIN
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+
+$font-family-base: Rubik, $font-family-sans-serif;
+$body-bg: $black;
+$body-color: $white;
+
+$link-decoration: none;
+$link-color: $body-color;
+$link-hover-color: shift-color($link-color, $link-shade-percentage);
+
+$table-color: $body-color;
+$table-border-color: $text-muted;
+
+$dark: black;
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "dark": $dark,
+);
+
+@import "bootstrap/mixins";
+@import "bootstrap/utilities";
+@import "bootstrap/root";
+@import "bootstrap/reboot";
+@import "bootstrap/type";
+@import "bootstrap/images";
+@import "bootstrap/containers";
+@import "bootstrap/grid";
+@import "bootstrap/tables";
+// @import "bootstrap/forms";
+// @import "bootstrap/buttons";
+@import "bootstrap/transitions";
+@import "bootstrap/dropdown";
+// @import "bootstrap/button-group";
+@import "bootstrap/nav";
+@import "bootstrap/navbar";
+// @import "bootstrap/card";
+// @import "bootstrap/accordion";
+// @import "bootstrap/breadcrumb";
+// @import "bootstrap/pagination";
+// @import "bootstrap/badge";
+// @import "bootstrap/alert";
+// @import "bootstrap/progress";
+// @import "bootstrap/list-group";
+// @import "bootstrap/close";
+// @import "bootstrap/toasts";
+// @import "bootstrap/modal";
+// @import "bootstrap/tooltip";
+// @import "bootstrap/popover";
+// @import "bootstrap/carousel";
+// @import "bootstrap/spinners";
+@import "bootstrap/helpers";
+@import "bootstrap/utilities/api";
+// Bootstrap END
+
+@import "math";
+@import "navbar";
+@import "team";
+@import "project";
+@import "sponsors";
+@import "roadmap";
+@import "gallery";
+@import "brochure";
+@import "join-us";
+@import "footer";
+
+html {
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $text-muted;
+        border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: shade-color($text-muted, 20%);
+    }
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    & > .container:not(footer) {
+        flex: 1 0 auto;
+    }
+}
+
+.team.container,
+.sponsors.container {
+    @include margin-top(10*$spacer);
+}
+
+.vertical-separator {
+    position: relative;
+    padding: 10% 0;
+
+    @include media-breakpoint-down(md) {
+        padding: 20% 0;
+    }
+
+    &::before {
+        $width: 2px;
+
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        height: 100%;
+        width: $width;
+        margin-left: -$width/2;
+        $color: shade-color($body-color, 20%);
+        background: linear-gradient(to bottom, $dark, $color 8%, $color 92%, $dark);
+    }
+}
+
+.icon {
+    fill: $body-color;
+    @include rfs(1rem, height);
+    @include rfs(1rem, width);
+}
+
+section {
+    @include margin(5*$spacer 0);
+
+    & > .container > .row {
+        @extend .gx-5;
+        & > div:nth-child(2) {
+            @include margin-top($spacer);
+            @include margin-bottom($spacer);
+        }
+    }
+}
+
+.hero {
+    height: 100vh;
+    width: auto;
+    padding: 15vh 0;
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        padding: 0;
+        object-fit: cover;
+    }
+
+    &.gradient {
+        &::after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+
+            content: "";
+            background-image: linear-gradient(to bottom, transparent, $dark);
+        }
+    }
+}
+
+.mars {
+    height: 100%;
+    max-height: 30vh;
+    aspect-ratio: 1;
+    position: relative;
+    border-radius: 50%;
+    transform: rotate(-25deg);
+    margin: 10% 0;
+
+    box-shadow:
+        inset 0.2rem 0.2rem 1rem rgba($light, 0.5),
+        -0.3rem -0.3rem 2rem 0.4rem rgba(109, 38, 13, 0.8);
+
+    background-image:
+        radial-gradient(circle farthest-side at 0 0, rgba($light, .25), rgba($dark, .35)),
+        radial-gradient(circle farthest-side at 0 0, #ffbd9d 25%, transparent 80%),
+        radial-gradient(circle farthest-side at 0 0, #da200d, transparent),
+        radial-gradient(circle farthest-side at 50% 0, #f05748, rgb(56, 19, 15) 85%);
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+
+        mix-blend-mode: soft-light;
+        {{- $image := resources.Get `images/mars-surface.jpg` -}}
+        background: url("{{($image.Resize `800x`).RelPermalink}}") 0 0 / auto 100% repeat-x;
+        animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+        to {
+            background-position: 200% 0;
+        }
+    }
+}
+
+header {
+    @include font-size(9rem);
+    position: relative;
+    .count {
+        font-size: 1em;
+        color: shade-color($body-color, 70%);
+        opacity: 0.6;
+        font-weight: 600;
+    }
+
+    .title {
+        text-align: center;
+        color: $body-color;
+        font-size: 0.15em;
+        position: absolute;
+        letter-spacing: 0.2em;
+        bottom: 20%;
+        left: 0.5em;
+    }
+}
+
+.button {
+    @include font-size(1rem);
+    border: 2px solid $light;
+    padding: 0.8em 2em;
+    position: relative;
+    display: inline-block;
+
+    &:not(.disabled) {
+        transition: color 1s cubic-bezier(0.25, 1, 0.25, 1);
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: $light;
+            transform-origin: top center;
+            transform: scaleY(0);
+            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            z-index: -1;
+        }
+        &:hover {
+            color: $dark;
+            &::after {
+                transform: scaleY(1);
+                transform-origin: bottom center;
+            }
+        }
+    }
+    &.disabled {
+        &:hover {
+            color: currentColor;
+        }
+    }
+}
+
+.arrow {
+    position: absolute;
+    $height: 2rem;
+    @include rfs($height, width);
+    @include rfs($height, height);
+    bottom: 7%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+
+    @include media-breakpoint-down(md) {
+        display: none;
+    }
+
+    &::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        $border: 2px solid $body-color;
+        border-bottom: $border;
+        border-right: $border;
+        transform: rotate(45deg);
+        animation: moveDown 3s infinite;
+    }
+
+    @keyframes moveDown {
+        0% {
+            opacity: 0;
+            transform: rotate(45deg) translate(-$height, -$height);
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+            transform: rotate(45deg) translate($height, $height);
+        }
+    }
+}

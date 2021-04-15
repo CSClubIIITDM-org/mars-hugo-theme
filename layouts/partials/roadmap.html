@@ -1,0 +1,26 @@
+{{ with site.Data.roadmap }}
+<div class="container text-center">
+	{{ with .section }}
+	<h1 class="d-block d-md-none">{{ .title }}</h1>
+	{{ with .description }}
+	<p>{{ . }}</p>
+	{{ end }}
+	{{ end }}
+	<div class="vertical-separator">
+		{{ range $i, $milestone := .milestones }}
+		<div class="row">
+			<div class="spacer d-none d-md-block col-6"></div>
+			<div class="col-12 col-md-6">
+				<div class="milestone d-block d-md-flex align-items-center">
+					<span class="hexagon d-none d-md-inline"></span>
+					<span class="title d-inline-block d-md-inline">{{ .title }}</span>
+					<br class="d-md-none">
+					<span class="date d-inline-block d-md-inline">{{ .date }}</span>
+				</div>
+				<div class="description">{{ .description }}</div>
+			</div>
+		</div>
+		{{ end }}
+	</div>
+</div>
+{{ end }}

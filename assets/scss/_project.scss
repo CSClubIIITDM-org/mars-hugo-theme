@@ -1,0 +1,38 @@
+.project {
+    section {
+        &:nth-child(2n) {
+            @include media-breakpoint-up(md) {
+                text-align: right;
+            }
+            flex-direction: row-reverse;
+        }
+    }
+
+    .part {
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            z-index: -1;
+            $radius: 10rem;
+            $rotationAngle: 70deg;
+            left: 50%;
+            bottom: cos($rotationAngle) * $radius;
+            height: 2 * $radius;
+            width: 2 * $radius;
+            margin-left: -$radius;
+            margin-bottom: -$radius;
+
+            background: radial-gradient($radius circle at center, rgba($light, 0.19), rgba($dark, 0.7));
+            transform: perspective(50em) rotateX($rotationAngle);
+
+            @include media-breakpoint-down(md) {
+                background: radial-gradient($radius circle at center, rgba($light, 0.19), rgba($dark, 0.7));
+                transform: perspective(40em) rotateX($rotationAngle);
+            }
+        }
+    }
+}

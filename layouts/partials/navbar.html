@@ -1,0 +1,37 @@
+<nav class="navbar fixed-top smart-scroll navbar-expand-md">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            {{ with resources.Get (print "images/" site.Params.logo) }}
+            <img src="{{.RelPermalink}}" height="{{.Height}}" width="{{.Width}}" alt="{{site.Title}}">
+            {{ else }}
+            {{ site.Title }}
+            {{ end }}
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            {{ partial "svg" "fas fa-bars" }}
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-lg-0">
+                {{ range site.Menus.sections }}
+                    {{ $href := .Identifier | default (anchorize .Name) }}
+                    {{ if eq $.RelPermalink "/" }}
+                        {{ if .Params.hide }}
+                            {{ $href = print "/" $href }}
+                        {{ else }}
+                            {{ $href = print "#" $href }}
+                        {{ end }}
+                    {{ else }}
+                        {{ if $.OutputFormats.Get .Name }}
+                            {{ $href = print "/" $href }}
+                        {{ else }}
+                            {{ $href = print "/#" $href }}
+                        {{ end }}
+                    {{ end }}
+                    <li class="nav-item mx-3"><a class="nav-link p-0" href="{{$href}}">{{ upper .Name }}</a></li>
+                {{ end }}
+            </ul>
+        </div>
+    </div>
+</nav>

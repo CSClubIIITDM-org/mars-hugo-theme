@@ -1,0 +1,33 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+{{ hugo.Generator }}
+<link rel="canonical" hreflang="{{site.LanguageCode|default `en`}}" href="{{.Permalink}}">
+
+{{ $logo := resources.Get (print "images/" site.Params.logo) }}
+{{ $favicon := resources.Get (print "images/" site.Params.favicon) }}
+{{ with ($logo | default $favicon) }}
+<link rel="icon" type="image/png" href="{{(.Resize (printf `32x`)).RelPermalink}}">
+<link rel="apple-touch-icon" type="image/png" href="{{(.Resize (printf `512x`)).RelPermalink}}">
+{{ end }}
+<meta name="description" content="{{.Scratch.Get `description`}}">
+
+
+{{ $logoResized := $logo }}
+{{ with $logo }}
+{{ $logoResized = .Resize "512x #000" }}
+{{ end }}
+
+<!-- Opengraph -->
+<meta name="og:title" content="{{.Scratch.Get `title`}}">
+<meta name="og:description" content="{{.Scratch.Get `description`}}">
+<meta name="og:type" content="website">
+{{ with $logoResized }}<meta name="og:image" content="{{.RelPermalink}}">{{ end }}
+<meta name="og:url" content="{{.Permalink}}">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary">
+{{ with site.Social.twitter }}<meta name="twitter:site" content="@{{.}}">{{ end }}
+<meta name="twitter:title" content="{{.Scratch.Get `title`}}">
+<meta name="twitter:description" content="{{.Scratch.Get `description`}}">
+{{ with $logoResized }}<meta name="twitter:image" content="{{.RelPermalink}}">{{ end }}

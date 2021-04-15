@@ -1,0 +1,21 @@
+#sponsors {
+    .icon {
+        height: 90%;
+        width: 90%;
+    }
+}
+
+.sponsors {
+    .icon {
+        height: 70%;
+        width: 70%;
+        transition: 0.8s cubic-bezier(0.25, 1, 0.25, 1);
+
+
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.07);
+            opacity: 0.4;
+        }
+    }
+}

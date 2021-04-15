@@ -1,0 +1,23 @@
+{{ define "main" }}
+{{ with site.Data.sponsors }}
+<div class="sponsors container text-center">
+    <h1 class="display-3">{{ .title }}</h1>
+    <p class="py-3">{{ .description }}</p>
+
+    <section data-aos="zoom-in-up">
+        <div class="row align-items-center justify-content-center">
+            {{ range .companies }}
+            <div class="sponsor col-6 col-sm-4 col-md-3 col-lg-2">
+                {{ $svg := .icon }}
+                {{ if strings.HasSuffix .icon ".svg" }}
+                {{ $svg = print "images/sponsors/" .icon }}
+                {{ end }}
+                {{ partial "svg" $svg }}
+                <p class="h5 py-3">{{ .name }}</p>
+            </div>
+            {{ end }}
+        </div>
+    </section>
+</div>
+{{ end }}
+{{ end }}

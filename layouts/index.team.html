@@ -1,0 +1,46 @@
+{{ define "main" }}
+{{ with site.Data.team }}
+<div class="team container text-center">
+    <section class="row d-flex justify-content-center">
+        <h1 class="display-3">{{ .title }}</h1>
+        <p class="py-3">{{ .description }}</p>
+        <div class="people row justify-content-center">
+            <div class="col-8 col-sm-6 col-md-4 col-lg-3 my-3">
+                {{ partial "person" (dict "person" .facultyAdvisor "flag" true) }}
+            </div>
+        </div>
+        <div class="people row justify-content-evenly gap-1">
+            {{ $members := slice }}
+            {{ range .subteams }}
+            {{ $members = append $members .members }}
+            {{ end }}
+            {{ $people := slice }}
+            {{ range slice .leader .coLeader }}
+            {{ $people = $people | append (slice (index (where $members ".name" .) 0)) }}
+            {{ end }}
+            {{ range $people }}
+            <div class="col-8 col-sm-6 col-md-4 col-lg-3 my-3">
+                {{ partial "person" (dict "person" . "flag" true) }}
+            </div>
+            {{ end }}
+        </div>
+    </section>
+    {{ range $subteam, $data := .subteams }}
+    <section class="subteam row d-flex justify-content-center" data-aos="fade-up" data-aos-duration=1500>
+        <div class="row">
+            <h1 class="pb-3">{{ upper (.title | default $subteam) }}</h1>
+        </div>
+        <div class="members row justify-content-evenly gap-1">
+            {{ $leader := index (where $data.members ".leader" true ) 0 }}
+            {{ $others := where $data.members ".leader" "!=" true }}
+            {{ range $i, $v := (slice $leader | append $others) }}
+            <div class="col-8 col-sm-6 col-md-4 col-lg-3 my-3">
+                {{ partial "person" . }}
+            </div>
+            {{ end }}
+        </div>
+    </section>
+    {{ end }}
+</div>
+{{ end }}
+{{ end }}

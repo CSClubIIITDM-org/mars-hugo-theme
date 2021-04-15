@@ -1,0 +1,19 @@
+{
+ "comments": {
+  "dependencies": {
+   "@popperjs/core": "github.com/UtkarshVerma/hugo-mod-bootstrap-v5"
+  },
+  "devDependencies": {}
+ },
+ "devDependencies": {
+  "@popperjs/core": "^2.9.1",
+  "aos": "^2.3.4",
+  "autoprefixer": "^10.2.5",
+  "postcss": "^8.2.10",
+  "postcss-cli": "^8.3.1",
+  "postcss-uncss": "^0.17.0",
+  "uncss": "^0.17.3"
+ },
+ "name": "mars-website",
+ "version": "0.1.0"
+}

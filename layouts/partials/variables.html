@@ -1,0 +1,9 @@
+{{ if eq $.RelPermalink "/" }}
+{{ .Scratch.Set "title" .Title }}
+{{ .Scratch.Set "description" site.Params.description }}
+{{ else }}
+{{ $title := replace (path.Base .RelPermalink) "-" " " | title }}
+{{ .Scratch.Set "title" (printf "%s | %s" $title .Title) }}
+{{ $data := index site.Data (replace (path.Base .RelPermalink) "-" "_") }}
+{{ .Scratch.Set "description" ($data.section.description | default $data.description) }}
+{{ end }}

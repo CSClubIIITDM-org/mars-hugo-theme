@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="{{site.LanguageCode|default `en`}}">
+
+<head>
+    {{ partial "variables" . }}
+    {{ partial "metadata" . }}
+    {{ partial "css" . }}
+    <title>{{ .Scratch.Get "title" }}</title>
+</head>
+
+{{ $background := "" }}
+{{ with resources.Get `images/bg.png` }}
+{{ $background = printf `background-image: url("%s")` .RelPermalink }}
+{{ if eq $.RelPermalink "/" }}
+{{ $background = print $background ", linear-gradient(to bottom, #071522 0, black 130vh)" }}
+{{ end }}
+{{ $background = print $background ";" }}
+{{ end }}
+
+<body style="{{$background|safeCSS}}" class="d-flex flex-column text-center text-md-start">
+    {{ partial "navbar" . }}
+    {{ block "main" . }}{{ end }}
+    {{ partial "footer" }}
+    {{ partial "js" . }}
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+outputs:
+  home:
+    - HTML
+    - Team
+    - Project
+    - Sponsors
+    - Join Us
+
+outputFormats:
+  Team:
+    path: team
+    mediaType: text/html
+    isHTML: true
+    permalinkable: true
+    notAlternative: true
+
+  Project:
+    path: project
+    mediaType: text/html
+    isHTML: true
+    permalinkable: true
+    notAlternative: true
+
+  Sponsors:
+    path: sponsors
+    mediaType: text/html
+    isHTML: true
+    permalinkable: true
+    notAlternative: true
+
+  Join Us:
+    path: join-us
+    mediaType: text/html
+    isHTML: true
+    permalinkable: true
+    notAlternative: true
+
+disableKinds:
+  - page
+  - section
+  - taxonomy
+  - term
+
+module:
+  imports:
+    - path: github.com/UtkarshVerma/hugo-mod-svg-icon-system
+    - path: github.com/UtkarshVerma/hugo-mod-bootstrap-v5
+    - path: github.com/michalsnik/aos
+      mounts:
+        - source: dist
+          target: assets
