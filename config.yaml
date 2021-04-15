@@ -1,11 +1,3 @@
-outputs:
-  home:
-    - HTML
-    - Team
-    - Project
-    - Sponsors
-    - Join Us
-
 outputFormats:
   Team:
     path: team
@@ -34,12 +26,6 @@ outputFormats:
     isHTML: true
     permalinkable: true
     notAlternative: true
-
-disableKinds:
-  - page
-  - section
-  - taxonomy
-  - term
 
 module:
   imports:
