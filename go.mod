@@ -1,4 +1,4 @@
-module github.com/WebOpsIIITDMK/MaRS
+module github.com/WebOpsIIITDMK/mars-hugo-theme
 
 go 1.16
 
