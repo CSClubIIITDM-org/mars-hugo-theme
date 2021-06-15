@@ -10,6 +10,8 @@ $link-decoration: none;
 $link-color: $body-color;
 $link-hover-color: shift-color($link-color, $link-shade-percentage);
 
+$nav-link-color: $link-color;
+
 $table-color: $body-color;
 $table-border-color: $text-muted;
 
