@@ -1,10 +1,10 @@
 github.com/FortAwesome/Font-Awesome v0.0.0-20210316185733-d79d85c3fad8 h1:3h1ZlZmKNqZtiTD6FF7GijnIB/PU9/jR+dclHF80pFE=
 github.com/FortAwesome/Font-Awesome v0.0.0-20210316185733-d79d85c3fad8/go.mod h1:IUgezN/MFpCDIlFezw3L8j83oeiIuYoj28Miwr/KUYo=
-github.com/UtkarshVerma/hugo-mod-bootstrap-v5 v0.0.0-20210323072512-5d8ac88e4d76 h1:cOAgQ1yrHDLdiGO102eES/FgMFRTbufKnpWpXMwArBg=
-github.com/UtkarshVerma/hugo-mod-bootstrap-v5 v0.0.0-20210323072512-5d8ac88e4d76/go.mod h1:FQ8hVD4vggmRA0j69uSCaJDLz7OMv6PkxT+gbsbLlVE=
-github.com/UtkarshVerma/hugo-mod-svg-icon-system v0.0.0-20210323084218-30fd1866fb45 h1:bxcnVx22+SQzEBm+v52BTSxsX8/SKPQS8i/AcwBOFwc=
-github.com/UtkarshVerma/hugo-mod-svg-icon-system v0.0.0-20210323084218-30fd1866fb45/go.mod h1:h9JZhzub40SrT8GlSf+Z14l5v+KPJ9/+LOULZPu3QVQ=
+github.com/UtkarshVerma/hugo-modules/bootstrap-v5 v0.0.0-20210610035240-87a56b0df5a6 h1:Slv+lXU5/hC+ql9z6sptgtfFOXc4sKjzb3nnyASFTNw=
+github.com/UtkarshVerma/hugo-modules/bootstrap-v5 v0.0.0-20210610035240-87a56b0df5a6/go.mod h1:ECjXmbY0i9OE6QaUmEg1bPsABpVKy4vos+cg7+UWm08=
+github.com/UtkarshVerma/hugo-modules/svg-icon-system v0.0.0-20210610035240-87a56b0df5a6 h1:HVYPvGWFzGMwKZ1bW6Pu52YlUVTuS5LM4ca0vnlzYP4=
+github.com/UtkarshVerma/hugo-modules/svg-icon-system v0.0.0-20210610035240-87a56b0df5a6/go.mod h1:sLt2pcoL3NavXRT1sOU8KKke9UcQsO3SYmobax6Fc+8=
 github.com/michalsnik/aos v2.3.4+incompatible h1:B9UWaV7R8318HMlInvtYvrcDOFN59B1GTJrNMuVIQvM=
 github.com/michalsnik/aos v2.3.4+incompatible/go.mod h1:3WnKv30MNNXa8Wu94W56YnTU6yZDq/5269RAD73C+kI=
-github.com/twbs/bootstrap v5.0.0-beta2+incompatible h1:PB8w9yrXsh1bA9MqrTpskdde458NVChGl1LW6UmG0nU=
-github.com/twbs/bootstrap v5.0.0-beta2+incompatible/go.mod h1:fZTSrkpSf0/HkL0IIJzvVspTt1r9zuf7XlZau8kpcY0=
+github.com/twbs/bootstrap v5.0.1+incompatible h1:XW1ZMrcg2ZTTQFKtE/i5HUagYsAao/hqfN30dJeBpVk=
+github.com/twbs/bootstrap v5.0.1+incompatible/go.mod h1:fZTSrkpSf0/HkL0IIJzvVspTt1r9zuf7XlZau8kpcY0=

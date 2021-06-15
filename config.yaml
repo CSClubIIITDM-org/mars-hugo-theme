@@ -29,8 +29,8 @@ outputFormats:
 
 module:
   imports:
-    - path: github.com/UtkarshVerma/hugo-mod-svg-icon-system
-    - path: github.com/UtkarshVerma/hugo-mod-bootstrap-v5
+    - path: github.com/UtkarshVerma/hugo-modules/svg-icon-system
+    - path: github.com/UtkarshVerma/hugo-modules/bootstrap-v5
     - path: github.com/michalsnik/aos
       mounts:
         - source: dist
