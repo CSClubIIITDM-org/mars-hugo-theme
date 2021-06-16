@@ -9,8 +9,8 @@
             <h1 class="display-3">{{ .title }}</h1>
             <p class="py-3">{{ markdownify .description }}</p>
             {{ with .button }}
-            {{ with .link }}
-            <a href="{{.}}" class="button">{{ upper .title }}</a>
+            {{ if .link }}
+            <a href="{{.link}}" class="button">{{ upper .title }}</a>
             {{ else }}
             <a class="button disabled">{{ upper .title }}</a>
             {{ end }}
