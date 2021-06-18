@@ -43,11 +43,6 @@
     @include media-breakpoint-down(md){
         background-color: $dark !important;
     }
-
-    a:hover {
-        color: currentColor;
-    }
-
     &.hide {
         transform: translateY(-100%);
         transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1) 0.15s;
